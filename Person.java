@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Person {
 
-    public String[] data;
+    private String[] data;
 
     /*private String id;
     private String name;
@@ -21,5 +21,9 @@ public class Person {
     public Person(String input) {
        data= input.split(",");
 
+    }
+    
+     public String[] getData(){
+        return data;
     }
 }
