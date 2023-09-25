@@ -1,0 +1,13 @@
+friend1,friend2
+jon234,pepe213
+jon234,pepa214
+jon234,Fernando33
+jon234,Aaliyah34
+pepe213,pepa214
+pepe213,Fernando33
+pepe213,Aaliyah34
+pepa214,Fernando33
+pepa214,Aaliyah34
+Fernando33,Aaliyah34
+
+
