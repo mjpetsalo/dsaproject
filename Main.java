@@ -4,12 +4,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+
+	public ArrayList<Person> persons = new ArrayList<Person>();
 	
-	
-	public static void main(String[] args) {
-		
+	public void main(String[] args) {
+
+
 		int choize;
 		
 		do {
@@ -17,7 +25,7 @@ public class Main {
 			choize = readTheMenuAndWrite();
 			executeTheJob(choize);
 			
-			
+			System.out.println(persons.get(0));
 		}while(choize != 0);
 		
 
@@ -38,13 +46,41 @@ public class Main {
 		choize = esk.nextInt();
 		
 		return choize;
+
 		
 	}
 	
-	public static void executeTheJob(int choize) {
+	public void executeTheJob(int choize) {
 		
 		switch(choize) {
 		case 1:
+
+
+
+
+
+
+
+					try {
+						FileInputStream in = new FileInputStream("friends.txt");
+						Scanner s =new Scanner(in);
+
+						while(s.hasNextLine()){
+							persons.add(new Person(s.nextLine()));
+
+						}
+					}
+
+
+
+					catch(IOException e){
+						System.out.println("File not found");
+					}
+
+
+
+
+
 		
 		break;
 		case 2:
