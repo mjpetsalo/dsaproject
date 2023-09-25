@@ -2,8 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -25,7 +24,8 @@ public class Main {
             choize = readTheMenuAndWrite();
             executeTheJob(choize);
 
-            
+
+
 
         }while(choize != 0);
 
@@ -89,6 +89,10 @@ public class Main {
                 break;
             case 3:
 
+                for(int i =0;i< persons.size();i++){
+
+                    System.out.println(Arrays.toString(persons.get(i).getData()));
+                }
                 break;
             case 0:
                 System.out.println("Byebye, come back soon.");
