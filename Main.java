@@ -15,7 +15,7 @@ public class Main {
 
 	public ArrayList<Person> persons = new ArrayList<Person>();
 	
-	public void main(String[] args) {
+	public static void main(String[] args) {
 
 
 		int choize;
