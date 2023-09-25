@@ -25,7 +25,7 @@ public class Main {
 			choize = readTheMenuAndWrite();
 			executeTheJob(choize);
 			
-			System.out.println(persons.get(0));
+			
 		}while(choize != 0);
 		
 
