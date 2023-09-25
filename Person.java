@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Person {
 
-    private String[] data;
+    public String[] data;
 
     /*private String id;
     private String name;
