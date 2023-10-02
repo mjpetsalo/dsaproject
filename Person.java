@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class Person {
 
     private String[] data;
+    
+    private ArrayList<String> list = new ArrayList<String>();
 
     /*private String id;
     private String name;
@@ -26,4 +29,11 @@ public class Person {
      public String[] getData(){
         return data;
     }
+
+	public ArrayList<String> getList() {
+		return list;
+	}
+     
+    
+     
 }
