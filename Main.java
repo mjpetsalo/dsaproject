@@ -68,6 +68,8 @@ public class Main {
 
                     while(s.hasNextLine()){
                         persons.add(new Person(s.nextLine()));
+                        
+                        
 
                     }
                 }
@@ -85,6 +87,45 @@ public class Main {
 
                 break;
             case 2:
+            	
+            	try {
+                    FileInputStream in = new FileInputStream("friends.txt");
+                    Scanner s =new Scanner(in);
+                    String[] relation;
+                    int position1;
+                    int position2;
+                    
+
+                    while(s.hasNextLine()){
+                    	
+                    	int i = 0;
+                    	
+                    	relation = s.next().split(",");
+                    	
+                    	if(i % 2 != 0) {
+
+                    	position1 = findPerson(relation[i]);
+                        position2 = findPerson(relation[i-1]);
+                    	
+                    	persons.get(position1).getList().add(relation[i-1]);
+                    	persons.get(position2).getList().add(relation[i]);
+                    			
+                    	}
+                    	i++;
+
+                    }
+                    
+                    System.out.println(persons.get(1).getList().toString());
+                    
+                    
+                }
+
+
+
+                catch(IOException e){
+                    System.out.println("File not found");
+                }
+            	
 
                 break;
             case 3:
@@ -99,6 +140,31 @@ public class Main {
                 break;
         }
 
+    }
+    
+    public static int findPerson(String ID) {
+    	
+    	boolean found = false;
+    	
+    	int i = 0;
+    	
+    	while(!found && i < persons.size()) {
+    		
+    		if(persons.get(i).getData()[0].equals(ID)) {
+    			
+    			found = true;
+    			
+    	    	return i;
+    			
+    			
+    		}
+    		
+    		i++;
+    		
+    	}
+    	
+    	return -1;
+    	
     }
 
 }
