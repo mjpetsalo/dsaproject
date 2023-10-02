@@ -1,4 +1,3 @@
-friend1,friend2
 jon234,pepe213
 jon234,pepa214
 jon234,Fernando33
