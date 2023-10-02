@@ -63,7 +63,7 @@ public class Main {
 
 
                 try {
-                    FileInputStream in = new FileInputStream("/home/miro/IdeaProjects/dsa/DSAghub/src/friends.txt");
+                    FileInputStream in = new FileInputStream("people.txt");
                     Scanner s =new Scanner(in);
 
                     while(s.hasNextLine()){
