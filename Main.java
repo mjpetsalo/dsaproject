@@ -40,7 +40,7 @@ public class Main {
 
         System.out.println("1-load into");
         System.out.println("2-load a relationship with someone");
-        System.out.println("3-print out someone");
+        System.out.println("3-print out people");
         //...
         System.out.println("0-log out");
 
