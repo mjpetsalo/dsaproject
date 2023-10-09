@@ -98,11 +98,11 @@ public class Main {
 
                     while(s.hasNextLine()){
                     	
-                    	int i = 0;
+                    	int i = 1;
                     	
-                    	relation = s.next().split(",");
+                    	relation = s.nextLine().split(",");
                     	
-                    	if(i % 2 != 0) {
+
 
                     	position1 = findPerson(relation[i]);
                         position2 = findPerson(relation[i-1]);
@@ -110,12 +110,9 @@ public class Main {
                     	persons.get(position1).getList().add(relation[i-1]);
                     	persons.get(position2).getList().add(relation[i]);
                     			
-                    	}
-                    	i++;
+
 
                     }
-                    
-                    System.out.println(persons.get(1).getList().toString());
                     
                     
                 }
