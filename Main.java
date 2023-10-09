@@ -68,8 +68,8 @@ public class Main {
 
                     while(s.hasNextLine()){
                         persons.add(new Person(s.nextLine()));
-                        
-                        
+
+
 
                     }
                 }
@@ -87,34 +87,42 @@ public class Main {
 
                 break;
             case 2:
-            	
-            	try {
+
+               if(persons.isEmpty()){
+                   break;
+               }
+                try {
                     FileInputStream in = new FileInputStream("friends.txt");
                     Scanner s =new Scanner(in);
                     String[] relation;
                     int position1;
                     int position2;
-                    
+
 
                     while(s.hasNextLine()){
-                    	
-                    	int i = 1;
-                    	
-                    	relation = s.nextLine().split(",");
-                    	
+
+                        int i = 1;
+
+                        relation = s.nextLine().split(",");
 
 
-                    	position1 = findPerson(relation[i]);
+
+                        position1 = findPerson(relation[i]);
                         position2 = findPerson(relation[i-1]);
-                    	
-                    	persons.get(position1).getList().add(relation[i-1]);
-                    	persons.get(position2).getList().add(relation[i]);
-                    			
+
+                        if(position1 != -1 && position2 != -1){
+                            persons.get(position1).getList().add(relation[i-1]);
+                            persons.get(position2).getList().add(relation[i]);
+                        }
+
+
 
 
                     }
-                    
-                    
+
+                  // System.out.println(persons.get(0).getList().toString());
+
+
                 }
 
 
@@ -122,7 +130,7 @@ public class Main {
                 catch(IOException e){
                     System.out.println("File not found");
                 }
-            	
+
 
                 break;
             case 3:
@@ -138,30 +146,30 @@ public class Main {
         }
 
     }
-    
+
     public static int findPerson(String ID) {
-    	
-    	boolean found = false;
-    	
-    	int i = 0;
-    	
-    	while(!found && i < persons.size()) {
-    		
-    		if(persons.get(i).getData()[0].equals(ID)) {
-    			
-    			found = true;
-    			
-    	    	return i;
-    			
-    			
-    		}
-    		
-    		i++;
-    		
-    	}
-    	
-    	return -1;
-    	
+
+        boolean found = false;
+
+        int i = 0;
+
+        while(!found && i < persons.size()) {
+
+            if(persons.get(i).getData()[0].equals(ID)) {
+
+                found = true;
+
+                return i;
+
+
+            }
+
+            i++;
+
+        }
+
+        return -1;
+
     }
 
 }
