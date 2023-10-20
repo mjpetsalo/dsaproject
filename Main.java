@@ -10,10 +10,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+*Main class is created in order to do a menu for the application, 
+*with the function of the application inplemented also.
+*
+*@author G612383
+*@version 1.0
+* @since   2023-10-20
+*/
 public class Main {
 
     public static ArrayList<Person> persons = new ArrayList<Person>();
 
+    /**
+    *This is the main function of the class to execute the menu
+    */
     public static void main(String[] args) {
 
 
@@ -32,6 +43,11 @@ public class Main {
 
     }
 
+    /**
+    *The function readTheMenuAndWrite is to write in the screen the 
+    *options of the menu and return what have choozen the user
+    *@return int deciding what they want the users.
+    */
     public static int readTheMenuAndWrite() {
 
         int choize;
@@ -41,7 +57,6 @@ public class Main {
         System.out.println("1-load into");
         System.out.println("2-load a relationship with someone");
         System.out.println("3-print out people");
-        //...
         System.out.println("0-log out");
 
         choize = esk.nextInt();
@@ -51,6 +66,10 @@ public class Main {
 
     }
 
+    /**
+    * The function executeTheJob is the main body of the menu and execute each part of it
+    *@atribute choize is a int the determines what option chose the user.
+    */
     public static void executeTheJob(int choize) {
 
         switch(choize) {
@@ -147,6 +166,12 @@ public class Main {
 
     }
 
+    /**
+    *findPerson is a helper function that recceive a ID and
+    *returns the position of the object in the list persons
+    *@atribute ID is an String to identificate a person.
+    *@return  returns the position in the list of the ID person.
+    */
     public static int findPerson(String ID) {
 
         boolean found = false;
