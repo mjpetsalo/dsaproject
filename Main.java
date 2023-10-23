@@ -57,6 +57,7 @@ public class Main {
         System.out.println("1-load into");
         System.out.println("2-load a relationship with someone");
         System.out.println("3-print out people");
+        System.out.println("4-Get a list of friends by surname");
         System.out.println("0-log out");
 
         choize = esk.nextInt();
@@ -139,7 +140,7 @@ public class Main {
 
                     }
 
-                  // System.out.println(persons.get(0).getList().toString());
+                 // System.out.println(persons.get(0).getList().toString());
 
 
                 }
@@ -158,6 +159,20 @@ public class Main {
 
                     System.out.println(Arrays.toString(persons.get(i).getData()));
                 }
+                break;
+
+            case 4:
+                System.out.println("Give ");
+                Scanner s = new Scanner(System.in);
+                String surname = s.nextLine();
+                List<Person> temp= getPeopleBySurname(surname);
+
+                String ou="";
+                for(int a =0; a<temp.size(); a++){
+                    System.out.println("Friends of "+temp.get(a).getData()[0]+" are ");
+                    ou+=temp.get(a).getList().toString();
+                }
+                System.out.println(ou);
                 break;
             case 0:
                 System.out.println("Byebye, come back soon.");
@@ -195,6 +210,19 @@ public class Main {
 
         return -1;
 
+    }
+
+
+    public static ArrayList<Person> getPeopleBySurname(String surname){
+        ArrayList<Person> list = new ArrayList<Person>();
+        int i=0;
+        while(i<persons.size()){
+            if(persons.get(i).getData()[2].equals(surname)){
+                list.add(persons.get(i));
+            }
+            i++;
+        }
+        return list;
     }
 
 }
