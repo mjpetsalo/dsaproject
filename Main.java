@@ -73,6 +73,8 @@ public class Main {
     */
     public static void executeTheJob(int choize) {
 
+        Scanner esk = new Scanner(System.in);
+
         switch(choize) {
             case 1:
 
@@ -174,6 +176,28 @@ public class Main {
                 }
                 System.out.println(ou);
                 break;
+
+            case 5:
+            	
+                System.out.println("Write down the city you want to search?");
+
+                String s = esk.next();
+                
+                
+            	
+                for(int i =0;i< persons.size();i++){
+                	
+                	if ((persons.get(i).getData()[5]) == s) {
+
+                    System.out.println(i+" citizens ID is "+persons.get(i).getData()[0]+" and the surname is "+persons.get(i).getData()[2]);
+                    
+                	}
+                }
+                break;
+            case 0:
+                System.out.println("Byebye, come back soon.");
+                break;
+        }
             case 0:
                 System.out.println("Byebye, come back soon.");
                 break;
