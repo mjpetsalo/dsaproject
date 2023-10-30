@@ -135,6 +135,15 @@ public class Main {
 
 
                 break;
+            case 7:
+                ArrayList<Person> qwer = bornBetween();
+                String bornbetweenoutput = "People born between given years are: ";
+                for (int a = 0; a < qwer.size(); a++) {
+
+                    bornbetweenoutput += qwer.get(a).getData()[0]+" ";
+                }
+                System.out.println(bornbetweenoutput);
+                break;
             case 3:
 
                 for (int i = 0; i < persons.size(); i++) {
@@ -277,6 +286,24 @@ public class Main {
             i++;
         }
         return list;
+    }
+
+       public static ArrayList<Person> bornBetween(){
+
+        ArrayList<Person> ret = new ArrayList<>();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Give the year from which search");
+        int y1=sc.nextInt();
+        System.out.println("Give the year until which to search");
+        int y2=sc.nextInt();
+        for(int i=0;i<persons.size();i++){
+            if((persons.get(i).getBirthYear()>=y1 )&&(persons.get(i).getBirthYear()<=y2)){
+                ret.add(persons.get(i));
+            }
+        }
+       Collections.sort(ret);
+        return ret;
+
     }
 
 }
