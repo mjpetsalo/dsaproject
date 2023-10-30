@@ -40,7 +40,7 @@ public class Person implements Comparable<Person> {
 
     }
 	public int getBirthYear(){
-		String[] tmp=data[4].split("-");
+		String[] tmp=this.data[3].split("-");
 		return Integer.parseInt(tmp[2]);
 	}
         /**
