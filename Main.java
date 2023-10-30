@@ -58,6 +58,7 @@ public class Main {
         System.out.println("2-load a relationship with someone");
         System.out.println("3-print out people");
         System.out.println("4-Get a list of friends by surname");
+        System.out.println("5-Get the ID and Surname of the citizens of same city");
         System.out.println("0-log out");
 
         choize = esk.nextInt();
@@ -165,13 +166,49 @@ public class Main {
 
                 for (int i = 0; i < persons.size(); i++) {
 
-                    if ((persons.get(i).getData()[5]) == s) {
+                    if ((persons.get(i).getData()[5]).equals(s)) {
+                    
 
                         System.out.println(i + " citizens ID is " + persons.get(i).getData()[0] + " and the surname is " + persons.get(i).getData()[2]);
 
                     }
                 }
                 break;
+            case 6:
+            	
+                try {
+                    FileInputStream in = new FileInputStream("residential.txt");
+                    Scanner eska = new Scanner(in);
+                    
+                    int j = textLinesNum("residential.txt");
+                    
+                    int k = 0;
+
+                    while (eska.hasNextLine()) {
+                       
+                    	int i = k+1;
+                    	
+                    	boolean b = true;
+                    	
+                    	while(i<j && !b) { if( persons.get(i).getData()[6].equals( persons.get(k).getData()[6])) {b=false;} i++;}
+                    	
+                    	if(b == true) {
+                    		
+                    		
+                    		
+                    	}
+                    	
+                    	k++;
+                    	
+
+                    }
+                } catch (IOException e) {
+                    System.out.println("File not found");
+                }
+
+            	
+            	
+            	break;
             case 0:
                 System.out.println("Byebye, come back soon.");
                 break;
@@ -210,6 +247,23 @@ public class Main {
 
         return -1;
 
+    }
+    
+    public static int textLinesNum(String text) {
+    	
+    	int i = 0;
+    	
+    	try {
+            FileInputStream in = new FileInputStream("residential.txt");
+            Scanner eska = new Scanner(in);
+
+            while (eska.hasNextLine()) i++;
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
+    	
+    	return i;
+    	
     }
 
 
