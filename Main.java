@@ -75,81 +75,60 @@ public class Main {
 
         Scanner esk = new Scanner(System.in);
 
-        switch(choize) {
+        switch (choize) {
             case 1:
-
-
-
-
-
 
 
                 try {
                     FileInputStream in = new FileInputStream("people.txt");
-                    Scanner s =new Scanner(in);
+                    Scanner s = new Scanner(in);
 
-                    while(s.hasNextLine()){
+                    while (s.hasNextLine()) {
                         persons.add(new Person(s.nextLine()));
 
 
-
                     }
-                }
-
-
-
-                catch(IOException e){
+                } catch (IOException e) {
                     System.out.println("File not found");
                 }
-
-
-
-
 
 
                 break;
             case 2:
 
-               if(persons.isEmpty()){
-                   break;
-               }
+                if (persons.isEmpty()) {
+                    break;
+                }
                 try {
                     FileInputStream in = new FileInputStream("friends.txt");
-                    Scanner s =new Scanner(in);
+                    Scanner s = new Scanner(in);
                     String[] relation;
                     int position1;
                     int position2;
 
 
-                    while(s.hasNextLine()){
+                    while (s.hasNextLine()) {
 
                         int i = 1;
 
                         relation = s.nextLine().split(",");
 
 
-
                         position1 = findPerson(relation[i]);
-                        position2 = findPerson(relation[i-1]);
+                        position2 = findPerson(relation[i - 1]);
 
-                        if(position1 != -1 && position2 != -1){
-                            persons.get(position1).getList().add(relation[i-1]);
+                        if (position1 != -1 && position2 != -1) {
+                            persons.get(position1).getList().add(relation[i - 1]);
                             persons.get(position2).getList().add(relation[i]);
                         }
 
 
-
-
                     }
 
-                 // System.out.println(persons.get(0).getList().toString());
+                    // System.out.println(persons.get(0).getList().toString());
 
 
-                }
-
-
-
-                catch(IOException e){
+                } catch (IOException e) {
                     System.out.println("File not found");
                 }
 
@@ -157,53 +136,50 @@ public class Main {
                 break;
             case 3:
 
-                for(int i =0;i< persons.size();i++){
+                for (int i = 0; i < persons.size(); i++) {
 
                     System.out.println(Arrays.toString(persons.get(i).getData()));
                 }
                 break;
 
             case 4:
-                System.out.println("Give ");
-                Scanner s = new Scanner(System.in);
-                String surname = s.nextLine();
-                List<Person> temp= getPeopleBySurname(surname);
+                System.out.println("Give surname");
+                Scanner sc = new Scanner(System.in);
+                String surname = sc.nextLine();
+                List<Person> temp = getPeopleBySurname(surname);
 
-                String ou="";
-                for(int a =0; a<temp.size(); a++){
-                    System.out.println("Friends of "+temp.get(a).getData()[0]+" are ");
-                    ou+=temp.get(a).getList().toString();
+                String ou = "";
+                for (int a = 0; a < temp.size(); a++) {
+                    System.out.println("Friends of " + temp.get(a).getData()[0] + " are ");
+                    ou += temp.get(a).getList().toString();
                 }
                 System.out.println(ou);
                 break;
 
             case 5:
-            	
+
                 System.out.println("Write down the city you want to search?");
 
                 String s = esk.next();
-                
-                
-            	
-                for(int i =0;i< persons.size();i++){
-                	
-                	if ((persons.get(i).getData()[5]) == s) {
 
-                    System.out.println(i+" citizens ID is "+persons.get(i).getData()[0]+" and the surname is "+persons.get(i).getData()[2]);
-                    
-                	}
+
+                for (int i = 0; i < persons.size(); i++) {
+
+                    if ((persons.get(i).getData()[5]) == s) {
+
+                        System.out.println(i + " citizens ID is " + persons.get(i).getData()[0] + " and the surname is " + persons.get(i).getData()[2]);
+
+                    }
                 }
                 break;
             case 0:
                 System.out.println("Byebye, come back soon.");
                 break;
-        }
-            case 0:
-                System.out.println("Byebye, come back soon.");
-                break;
-        }
 
+        }
     }
+
+
 
     /**
     *findPerson is a helper function that recceive a ID and
