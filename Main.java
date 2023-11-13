@@ -59,6 +59,7 @@ public class Main {
         System.out.println("3-print out people");
         System.out.println("4-Get a list of friends by surname");
         System.out.println("5-Get the ID and Surname of the citizens of same city");
+        System.out.println("7-Get people born between two years");
         System.out.println("0-log out");
 
         choize = esk.nextInt();
