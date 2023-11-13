@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 /**
 *Main class is created in order to do a menu for the application, 
-*with the function of the application inplemented also.
+*with the function of the application also inplemented.
 *
 *@author G612383
 *@version 1.0
@@ -28,29 +28,29 @@ public class Main {
     public static void main(String[] args) {
 
 
-        int choize;
+        int choice;
 
         do {
 
-            choize = readTheMenuAndWrite();
-            executeTheJob(choize);
+            choice = readTheMenuAndWrite();
+            executeTheJob(choice);
 
 
 
 
-        }while(choize != 0);
+        }while(choice != 0);
 
 
     }
 
     /**
-    *The function readTheMenuAndWrite is to write in the screen the 
-    *options of the menu and return what have choozen the user
-    *@return int deciding what they want the users.
+    *The function readTheMenuAndWrite is used to write in the screen the 
+    *options of the menu and return whatever choice the user has chosen
+    *@return the number of the case the user has chosen
     */
     public static int readTheMenuAndWrite() {
 
-        int choize;
+        int choice;
 
         Scanner esk = new Scanner(System.in);
 
@@ -62,22 +62,22 @@ public class Main {
         System.out.println("7-Get people born between two years");
         System.out.println("0-log out");
 
-        choize = esk.nextInt();
+        choice = esk.nextInt();
 
-        return choize;
+        return choice;
 
 
     }
 
     /**
-    * The function executeTheJob is the main body of the menu and execute each part of it
-    *@atribute choize is a int the determines what option chose the user.
+    *The function executeTheJob is the main body of the menu and executes each part of it
+    *@param choice is an int value that determines which option the user has chosen.
     */
-    public static void executeTheJob(int choize) {
+    public static void executeTheJob(int choice) {
 
         Scanner esk = new Scanner(System.in);
 
-        switch (choize) {
+        switch (choice) {
             case 1:
 
 
@@ -138,7 +138,7 @@ public class Main {
                 break;
             case 7:
                 ArrayList<Person> qwer = bornBetween();
-                String bornbetweenoutput = "People born between given years are: ";
+                String bornbetweenoutput = "People born between the years given are: ";
                 for (int a = 0; a < qwer.size(); a++) {
 
                     bornbetweenoutput += qwer.get(a).getData()[0]+" ";
@@ -169,7 +169,7 @@ public class Main {
 
             case 5:
 
-                System.out.println("Write down the city you want to search?");
+                System.out.println("Write down the city you want to search");
 
                 String s = esk.next();
 
@@ -229,9 +229,9 @@ public class Main {
 
 
     /**
-    *findPerson is a helper function that recceive a ID and
+    *findPerson is a helper function that receives an ID and
     *returns the position of the object in the list persons
-    *@atribute ID is an String to identificate a person.
+    *@param ID is an String to identificate a person.
     *@return  returns the position in the list of the ID person.
     */
     public static int findPerson(String ID) {
@@ -258,7 +258,12 @@ public class Main {
         return -1;
 
     }
-    
+    /**
+    *textLinesNum is a function that receives a String text and then returns an int value
+    *
+    *@param 
+    *@return the
+    */
     public static int textLinesNum(String text) {
     	
     	int i = 0;
