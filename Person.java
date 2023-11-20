@@ -38,8 +38,8 @@ public class Person implements Comparable<Person> {
 	*/
     public Person(String input) {
        data= input.split(",");
-	   if(data[8]!=null){
-		  String[] movies=data[8].split(";");
+	   if(data[9]!=null){
+		  String[] movies=data[9].split(";");
 		  HashSet<String> filmprofile=new HashSet<>(Arrays.asList(movies));
 
 		  if(!Main.profiles.containsKey(filmprofile)){
@@ -87,4 +87,10 @@ public class Person implements Comparable<Person> {
 		return (CharSequence.compare(this.getData()[1], otherPerson.getData()[1]));
 
 	}
+	@Override
+	public String toString() {
+		return data[0];
+	}
+
+
 }
