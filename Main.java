@@ -267,10 +267,10 @@ public class Main {
         return -1;
 
     }
-    /**
-    *textLinesNum is a function that receives a String text and then returns an int value
-    *
-    *@param 
+     /**
+    *textLinesNum is a function that receives a String text and then returns an int value for the amount of
+    *lines 
+    *@param text
     *@return the
     */
     public static int textLinesNum(String text) {
@@ -290,7 +290,12 @@ public class Main {
     	
     }
 
-
+    /**
+    *getPeopleBySurname is a function intended to create a list with the
+    *people who shares surnames with the one introduced in the parameter
+    *@param surname is the String we want to compare 
+    *@return the list of people with the same surname as the parameter
+    */
     public static ArrayList<Person> getPeopleBySurname(String surname){
         ArrayList<Person> list = new ArrayList<Person>();
         int i=0;
@@ -303,6 +308,11 @@ public class Main {
         return list;
     }
 
+      /**
+      *bornBetween is a function intended to make a list with all the people who was born between 
+      *the first value given and the second
+      *@return ret is the list with all the people described before
+      */
        public static ArrayList<Person> bornBetween(){
 
         ArrayList<Person> ret = new ArrayList<>();
