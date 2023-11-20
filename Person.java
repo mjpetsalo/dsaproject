@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 
 /**
 * The Person class gives the data so the object Person can be used in the main program, this object will work as an User
@@ -16,7 +17,7 @@ public class Person implements Comparable<Person> {
     private String[] data;
     
     private ArrayList<String> list = new ArrayList<String>();
-
+	private HashSet<String> filmprofile;
     /*private String id;
     private String name;
     private String lastname;
@@ -37,6 +38,20 @@ public class Person implements Comparable<Person> {
 	*/
     public Person(String input) {
        data= input.split(",");
+	   if(data[8]!=null){
+		  String[] movies=data[8].split(";");
+		  HashSet<String> filmprofile=new HashSet<>(Arrays.asList(movies));
+
+		  if(!Main.profiles.containsKey(filmprofile)){
+			  HashSet<Person> temp = new HashSet<>();
+			  temp.add(this);
+					  Main.profiles.put(filmprofile,temp);
+		  } else {
+			HashSet<Person> update = Main.profiles.get(filmprofile);
+			update.add(this);
+			Main.profiles.put(filmprofile,update);
+		  }
+	   }
 
     }
 	public int getBirthYear(){
