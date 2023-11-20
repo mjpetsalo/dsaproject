@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +22,7 @@ import java.util.Scanner;
 public class Main {
 
     public static ArrayList<Person> persons = new ArrayList<Person>();
+    public static HashMap<HashSet<String>,HashSet<Person>> profiles = new HashMap<>();
 
     /**
     *This is the main function of the class to execute the menu
@@ -60,6 +62,7 @@ public class Main {
         System.out.println("4-Get a list of friends by surname");
         System.out.println("5-Get the ID and Surname of the citizens of same city");
         System.out.println("7-Get people born between two years");
+        System.out.println("8-Get people divided to groups by their favourite movies");
         System.out.println("0-log out");
 
         choice = esk.nextInt();
@@ -219,6 +222,10 @@ public class Main {
             	
             	
             	break;
+            case 8:
+                System.out.println("People in the network split to profiles based on their movies:");
+
+                break;
             case 0:
                 System.out.println("Byebye, come back soon.");
                 break;
