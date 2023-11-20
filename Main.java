@@ -224,7 +224,9 @@ public class Main {
             	break;
             case 8:
                 System.out.println("People in the network split to profiles based on their movies:");
-
+                profiles.entrySet().stream().forEach(e->{
+                    System.out.format("Favourite movies: %s, People : %s \n", e.getKey().toString(), e.getValue().toString());
+                });
                 break;
             case 0:
                 System.out.println("Byebye, come back soon.");
