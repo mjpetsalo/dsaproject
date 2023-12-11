@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLOutput;
@@ -61,6 +62,7 @@ public class Main {
         System.out.println("3-print out people");
         System.out.println("4-Get a list of friends by surname");
         System.out.println("5-Get the ID and Surname of the citizens of same city");
+        System.out.println("6-Get people that their bithplace match with hometown of people decribed on residential file");
         System.out.println("7-Get people born between two years");
         System.out.println("8-Get people divided to groups by their favourite movies");
         System.out.println("0-log out");
@@ -189,37 +191,37 @@ public class Main {
                 break;
             case 6:
             	
-                try {
-                    FileInputStream in = new FileInputStream("residential.txt");
-                    Scanner eska = new Scanner(in);
-                    
-                    int j = textLinesNum("residential.txt");
-                    
-                    int k = 0;
-
-                    while (eska.hasNextLine()) {
-                       
-                    	int i = k+1;
-                    	
-                    	boolean b = true;
-                    	
-                    	while(i<j && !b) { if( persons.get(i).getData()[6].equals( persons.get(k).getData()[6])) {b=false;} i++;}
-                    	
-                    	if(b == true) {
-                    		
-                    		
-                    		
-                    	}
-                    	
-                    	k++;
-                    	
-
-                    }
-                } catch (IOException e) {
-                    System.out.println("File not found");
+                BST_class bst = BST_load("residential");
+                
+                int resMax = textLinesNum("residential");
+                
+                
+                String[] inord = bst.inorder().split(",");
+                
+                for(int i = 0; i < resMax; i++) {
+                	
+                	if((i==resMax-1)||(i<resMax-1 && inord[i]!=inord[i+1])) {
+                		
+                		for(int j = 0; j < persons.size(); j++) {
+                			
+                			String lag[] = inord[i].split("-");
+                			
+                			if(lag[0].equals(persons.get(j).getData()[5]) && !lag[1].equals(persons.get(j).getData()[0])) {
+                				
+                				System.out.println("Name: "+persons.get(j).getData()[1]);
+                				System.out.println("Surname: "+persons.get(j).getData()[2]);
+                				System.out.println("Birthplace: "+persons.get(j).getData()[5]);
+                				System.out.println("Studiedat: "+persons.get(j).getData()[7]);
+                			}
+                			
+                		}
+                		
+                		
+                	}
+                	
                 }
-
             	
+                System.out.println();
             	
             	break;
             case 8:
@@ -281,7 +283,7 @@ public class Main {
             FileInputStream in = new FileInputStream("residential.txt");
             Scanner eska = new Scanner(in);
 
-            while (eska.hasNextLine()) i++;
+            while (eska.hasNextLine()) {i++; eska.next();}
         } catch (IOException e) {
             System.out.println("File not found");
         }
@@ -330,5 +332,33 @@ public class Main {
         return ret;
 
     }
+       
+       public static BST_class BST_load(String name) {
+    	   
+    	   FileInputStream in;
+		try {
+			
+			BST_class bst = new BST_class();
+			
+			in = new FileInputStream(name+".txt");
+			Scanner eska = new Scanner(in);
+			String s;
+			
+			while(eska.hasNext()) {
+				
+				s = eska.next();
+				bst.insert(persons.get(findPerson(s)).getData()[6]+"-"+s);
+
+			}
+			
+			return bst;
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error");
+		}
+		return null;
+    	   
+       }
 
 }
