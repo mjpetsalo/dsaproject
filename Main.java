@@ -66,7 +66,7 @@ public class Main {
         System.out.println("6-Get people that their bithplace match with hometown of people decribed on residential file");
         System.out.println("7-Get people born between two years");
         System.out.println("8-Get people divided to groups by their favourite movies");
-        System.out.println("9-Get a shortest chain between two people");
+        System.out.println("9-Get the shortest chain of firends between two people");
         System.out.println("0-log out");
 
         choice = esk.nextInt();
