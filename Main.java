@@ -142,15 +142,7 @@ public class Main {
 
 
                 break;
-            case 7:
-                ArrayList<Person> qwer = bornBetween();
-                String bornbetweenoutput = "People born between the years given are: ";
-                for (int a = 0; a < qwer.size(); a++) {
 
-                    bornbetweenoutput += qwer.get(a).getData()[0]+" ";
-                }
-                System.out.println(bornbetweenoutput);
-                break;
             case 3:
 
                 for (int i = 0; i < persons.size(); i++) {
@@ -190,6 +182,7 @@ public class Main {
                     }
                 }
                 break;
+			
             case 6:
             	
                 BST_class bst = BST_load("residential");
@@ -225,12 +218,27 @@ public class Main {
                 System.out.println();
             	
             	break;
+			
+	   case 7:
+                ArrayList<Person> qwer = bornBetween();
+                String bornbetweenoutput = "People born between the years given are: ";
+                for (int a = 0; a < qwer.size(); a++) {
+
+                    bornbetweenoutput += qwer.get(a).getData()[0]+" ";
+                }
+                System.out.println(bornbetweenoutput);
+                break;
+			
             case 8:
                 System.out.println("People in the network split to profiles based on their movies:");
                 profiles.entrySet().stream().forEach(e->{
                     System.out.format("Favourite movies: %s, People : %s \n", e.getKey().toString(), e.getValue().toString());
                 });
                 break;
+
+	     case 10:
+               
+			
             case 0:
                 System.out.println("Byebye, come back soon.");
                 break;
