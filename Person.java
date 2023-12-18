@@ -17,6 +17,7 @@ public class Person implements Comparable<Person> {
     private String[] data;
     
     private ArrayList<String> list = new ArrayList<String>();
+	private ArrayList<Person> personList= new ArrayList<>();
 	private HashSet<String> filmprofile;
     /*private String id;
     private String name;
@@ -92,5 +93,7 @@ public class Person implements Comparable<Person> {
 		return data[0];
 	}
 
-
+	public ArrayList<Person> getPersonList() {
+		return personList;
+	}
 }
