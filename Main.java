@@ -89,7 +89,8 @@ public class Main {
 
 
                 try {
-                    FileInputStream in = new FileInputStream("people.txt");
+                    System.out.println("Give the name of the file to read:  ");
+                    FileInputStream in = new FileInputStream(esk.nextLine());
                     Scanner s = new Scanner(in);
 
                     while (s.hasNextLine()) {
@@ -97,6 +98,7 @@ public class Main {
 
 
                     }
+                    System.out.println("Load succesful!");
                 } catch (IOException e) {
                     System.out.println("File not found");
                 }
@@ -109,7 +111,8 @@ public class Main {
                     break;
                 }
                 try {
-                    FileInputStream in = new FileInputStream("friends.txt");
+                    System.out.println("Give the name of the file to read: ");
+                    FileInputStream in = new FileInputStream(esk.nextLine());
                     Scanner s = new Scanner(in);
                     String[] relation;
                     int position1;
@@ -138,7 +141,7 @@ public class Main {
 
                     // System.out.println(persons.get(0).getList().toString());
 
-
+                    System.out.println("Load succesful!");
                 } catch (IOException e) {
                     System.out.println("File not found");
                 }
@@ -383,28 +386,43 @@ public class Main {
 
     }
 
-    // IN PROGRESS
-    public static String shortestChain(Person arg1, Person arg2){
-        String ret="";
-        Queue<Person> que= new LinkedBlockingQueue<>();
+
+    public static String shortestChain(Person arg1, Person arg2) {
+        if (arg1.equals(arg2)) {
+            return arg1.toString();
+        }
+
+        String ret = "";
+        Queue<Person> que = new LinkedList<>();
+        HashMap<Person, Person> parens = new HashMap<>();
         que.add(arg1);
-        int maxchain=5;
-        HashMap<Person, Boolean> visited= new HashMap<>();
-        while(!que.isEmpty()&& maxchain >0){
-            maxchain--;
+
+        HashMap<Person, Boolean> visited = new HashMap<>();
+        while (!que.isEmpty()) {
             Person temp = que.remove();
-            ret=ret+temp.toString()+"-";
-            for(Person a : temp.getPersonList()){
-                if(visited.get(a)==null) {
+         
+            for (Person a : temp.getPersonList()) {
+                if (visited.get(a) == null) {
+                    parens.put(a, temp);
                     visited.put(a, true);
                     que.add(a);
+
+
+                    if (a.equals(arg2)) {
+
+                        ret = a.toString();
+                        while (!parens.get(a).equals(arg1) ) {
+
+                            a = parens.get(a);
+                            ret = a.toString() + "-" + ret;
+                        }
+                        return arg1.toString()+"-"+ret;
+                    }
                 }
-            }
-            if(que.contains(arg2)){
-                return ret+arg2.toString();
             }
         }
         return null;
     }
 
 }
+
