@@ -257,7 +257,7 @@ public class Main {
                 Set<Set<Person>> cliques = findClicks(persons);
                 for (Set<Person> clique : cliques) {
 
-                        System.out.println(clique);
+                    System.out.println(clique);
 
                 }
                 break;
@@ -413,7 +413,7 @@ public class Main {
         HashMap<Person, Boolean> visited = new HashMap<>();
         while (!que.isEmpty()) {
             Person temp = que.remove();
-         
+
             for (Person a : temp.getPersonList()) {
                 if (visited.get(a) == null) {
                     parens.put(a, temp);
@@ -440,6 +440,7 @@ public class Main {
 
     //Method returns a set of sets = a set of the cliques larger than 4 in size. Uses a worker method findCliquesWorker, due to the recursive nature of traversal.
     // Returning a set of sets to avoid duplicates that would be returned if using lists instead.
+    //Method stillClique is used to check if the clique will still be a clique after adding a new member in findCliquesWorker
 
 
     public static Set<Set<Person>> findClicks(List<Person> g) {
@@ -455,13 +456,13 @@ public class Main {
         return ret;
     }
 
-    public static void findCliquesWorker(List<Person> g, Person currentperson, Set<Person> temp, Set<Set<Person>> ret) {
-        if (temp.size() >4) {
+    public static void findCliquesWorker(List<Person> g, Person currentPerson, Set<Person> temp, Set<Set<Person>> ret) {
+        if (temp.size() >= 5) {
             ret.add(new HashSet<>(temp));
         }
 
-        for (Person a : currentperson.getPersonList()) {
-            if (temp.contains(a) == false) {
+        for (Person a : currentPerson.getPersonList()) {
+            if (!temp.contains(a) && stillClique(temp, a)) {
                 temp.add(a);
                 findCliquesWorker(g, a, temp, ret);
                 temp.remove(a);
@@ -469,5 +470,13 @@ public class Main {
         }
     }
 
-}
+    public static boolean stillClique(Set<Person> temp, Person a) {
+        for (Person person : temp) {
+            if (!person.getPersonList().contains(a)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+}
