@@ -67,6 +67,7 @@ public class Main {
         System.out.println("7-Get people born between two years");
         System.out.println("8-Get people divided to groups by their favourite movies");
         System.out.println("9-Get the shortest chain of firends between two people");
+        System.out.println("10-Get the cliques larger than 4 people");
         System.out.println("0-log out");
 
         choice = esk.nextInt();
@@ -251,6 +252,15 @@ public class Main {
                     break;
                 }
 
+            case 10:
+
+                Set<Set<Person>> cliques = findClicks(persons);
+                for (Set<Person> clique : cliques) {
+
+                        System.out.println(clique);
+
+                }
+                break;
 
 
 
@@ -258,6 +268,9 @@ public class Main {
             case 0:
                 System.out.println("Byebye, come back soon.");
                 break;
+
+            default:
+                System.out.println("Invalid input, please try again");
 
         }
     }
@@ -422,6 +435,38 @@ public class Main {
             }
         }
         return null;
+    }
+
+
+    //Method returns a set of sets = a set of the cliques larger than 4 in size. Uses a worker method findCliquesWorker, due to the recursive nature of traversal.
+    // Returning a set of sets to avoid duplicates that would be returned if using lists instead.
+
+
+    public static Set<Set<Person>> findClicks(List<Person> g) {
+        Set<Set<Person>> ret = new HashSet<>();
+        Set<Person> temp = new HashSet<>();
+
+        for (Person person : g) {
+            temp.add(person);
+            findCliquesWorker(g, person, temp, ret);
+            temp.remove(person);
+        }
+
+        return ret;
+    }
+
+    public static void findCliquesWorker(List<Person> g, Person currentperson, Set<Person> temp, Set<Set<Person>> ret) {
+        if (temp.size() >4) {
+            ret.add(new HashSet<>(temp));
+        }
+
+        for (Person a : currentperson.getPersonList()) {
+            if (temp.contains(a) == false) {
+                temp.add(a);
+                findCliquesWorker(g, a, temp, ret);
+                temp.remove(a);
+            }
+        }
     }
 
 }
