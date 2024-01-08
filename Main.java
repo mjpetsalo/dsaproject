@@ -199,37 +199,46 @@ public class Main {
                 break;
             case 6:
 
-                BST_class bst = BST_load("residential");
-
-                int resMax = textLinesNum("residential");
-
+               BST_class bst = BST_load("residential");
+                
+                System.out.println(bst.inorder());
+		
+				int resMax = textLinesNum("residential");
 
                 String[] inord = bst.inorder().split(",");
+                
+                String lag[] = inord[0].split("-");
+                
+                String lag2[]= inord[1].split("-");
 
-                for(int i = 0; i < resMax; i++) {
+                for(int i = 0; i < resMax; i++) {              	
 
-                    if((i==resMax-1)||(i<resMax-1 && inord[i]!=inord[i+1])) {
+                	
+                	if(i<resMax-1) lag2= inord[i+1].split("-");
+                	
+
+                    if((i==resMax-1)||(i<resMax-1 && !lag[0].equals(lag2[0]))) {
 
                         for(int j = 0; j < persons.size(); j++) {
 
-                            String lag[] = inord[i].split("-");
 
                             if(lag[0].equals(persons.get(j).getData()[5]) && !lag[1].equals(persons.get(j).getData()[0])) {
 
                                 System.out.println("Name: "+persons.get(j).getData()[1]);
                                 System.out.println("Surname: "+persons.get(j).getData()[2]);
                                 System.out.println("Birthplace: "+persons.get(j).getData()[5]);
-                                System.out.println("Studiedat: "+persons.get(j).getData()[7]);
+                                System.out.println("Studiedat: "+persons.get(j).getData()[7]); 
                             }
 
                         }
 
 
-                    }
-
+                    }                    
+                    
+                	lag[0] = lag2[0];
+                	lag[1] = lag2[1];
+                	
                 }
-
-                System.out.println();
 
                 break;
             case 8:
@@ -313,21 +322,34 @@ public class Main {
      *@param text
      *@return the
      */
-    public static int textLinesNum(String text) {
+ @SuppressWarnings("resource")
+	public static int textLinesNum(String text)  {
 
-        int i = 0;
-
-        try {
-            FileInputStream in = new FileInputStream("residential.txt");
-            Scanner eska = new Scanner(in);
-
-            while (eska.hasNextLine()) {i++; eska.next();}
-        } catch (IOException e) {
-            System.out.println("File not found");
-        }
-
-        return i;
-
+    	try {
+			BufferedReader br = new BufferedReader(new FileReader(text+".txt"));
+			
+			int contador = 0;
+            String linea;
+            
+            
+				try {
+					while ( br.readLine() != null) {
+					    contador++;
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					System.out.println("error textlinesnum 1");
+				}
+				 return contador;
+				
+			
+            
+           
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error textLinesNum 2");
+		}
+    	return 0;
     }
 
     /**
